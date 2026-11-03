@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050a12"><title>HNGUYEN — Motion Project Store</title>
+<style>
+:root{--bg:#050a12;--panel:#0b1726;--panel2:#102238;--line:#1a3a55;--blue:#19baff;--cyan:#82eaff;--muted:#91aabd;--white:#effaff}
+*{box-sizing:border-box}html,body{height:100%;margin:0}body{background:radial-gradient(ellipse at 80% 0%,#0d2943 0,transparent 38%),#050a12;color:var(--white);font:15px/1.5 Inter,system-ui,Arial;overflow:hidden}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}
+
+#siteLoader{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 42%,#0c3451 0,#071523 42%,#030810 82%);transition:opacity .55s ease,visibility .55s ease}
+#siteLoader.hide{opacity:0;visibility:hidden;pointer-events:none}
+.loader-content{width:min(320px,80vw);text-align:center}.loader-logo{font-size:29px;font-weight:950;letter-spacing:5px;color:#eafaff;text-shadow:0 0 25px #19baff66}.loader-logo span{color:#20c3ff}
+.loader-orbit{width:78px;height:78px;border:1px solid #1d729b;border-top:2px solid #72eaff;border-radius:50%;margin:22px auto 18px;position:relative;animation:spinLoader 1s linear infinite;box-shadow:0 0 25px #19baff33}
+.loader-orbit:before{content:"";position:absolute;width:11px;height:11px;left:4px;top:7px;border-radius:50%;background:#8cecff;box-shadow:0 0 16px #20caff}
+.loader-orbit:after{content:"";position:absolute;inset:12px;border:1px solid #17608a;border-bottom-color:#8deeff;border-radius:50%;animation:spinLoader .8s linear infinite reverse}
+.loader-text{font-size:10px;letter-spacing:3px;color:#91cce5}.loader-track{height:3px;background:#16334a;border-radius:9px;margin:15px auto 0;overflow:hidden}.loader-track i{display:block;height:100%;width:0;background:linear-gradient(90deg,#0879c7,#83eeff);box-shadow:0 0 12px #19baff;animation:loadProgress 1.55s ease forwards}
+@keyframes spinLoader{to{transform:rotate(360deg)}}@keyframes loadProgress{to{width:100%}}
+.demo-btn{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;margin-top:10px;padding:9px 10px;border:1px solid #235878;border-radius:8px;background:linear-gradient(110deg,#0c263b,#0a1a2a);color:#aeeaff;font-size:11px;font-weight:800;cursor:pointer;transition:.2s}
+.demo-btn:hover{border-color:#3bcaff;background:#10314a;box-shadow:0 0 18px #19baff20}
+.video-frame{width:100%;aspect-ratio:16/9;background:radial-gradient(ellipse at center,#104366,#06101b 72%);border:1px solid #214c69;border-radius:10px;display:grid;place-items:center;overflow:hidden;margin-top:16px}
+.video-frame video,.video-frame iframe{width:100%;height:100%;object-fit:contain;background:#000;border:0}
+.video-empty{text-align:center;padding:20px;color:#a5c3d5;font-size:13px}.video-empty b{display:block;color:#dff7ff;font-size:15px;margin:9px 0 5px}
+header{height:82px;border-bottom:1px solid #1a3b55;background:linear-gradient(90deg,#050b13f5,#081726f2,#050b13f5);backdrop-filter:blur(20px);position:relative;z-index:5;box-shadow:0 8px 35px #0005}.shell{width:min(1200px,calc(100% - 44px));margin:auto}.top{height:100%;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}.logo{font-weight:950;font-size:22px;letter-spacing:2.5px;display:inline-flex;align-items:center;gap:9px;width:max-content}.logo span{color:var(--blue);text-shadow:0 0 20px #19baff99}.logo-mark{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;border:1px solid #26739a;background:linear-gradient(145deg,#123c59,#071321);box-shadow:inset 0 0 16px #19baff33,0 0 18px #19baff20;color:#9beaff;font-size:17px}.nav{display:flex;align-items:center;gap:5px;padding:6px;border:1px solid #1b3d58;border-radius:15px;background:#071421cc;box-shadow:inset 0 1px #ffffff08,0 8px 24px #0003}.nav button{position:relative;background:transparent;border:1px solid transparent;color:#9eb8ca;border-radius:10px;padding:10px 16px;font-size:12px;font-weight:700;letter-spacing:.2px;white-space:nowrap;transition:.2s}.nav button:before{content:"";display:inline-block;width:6px;height:6px;margin:0 8px 1px 0;border-radius:50%;background:#42627a;transition:.2s}.nav button:hover{color:#e5faff;background:#0d263b}.nav button.active{background:linear-gradient(135deg,#103b58,#0b263d);border-color:#245d7c;color:#e8faff;box-shadow:inset 0 0 18px #19baff12,0 0 15px #19baff12}.nav button.active:before{background:#4edcff;box-shadow:0 0 9px #4edcff}.right{display:flex;gap:9px;justify-content:flex-end}.btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 16px;border-radius:10px;border:1px solid transparent;background:linear-gradient(120deg,#19baff,#0875c9);color:white;font-weight:800;font-size:12px;cursor:pointer;box-shadow:0 7px 20px #078bd52b}.btn.ghost{background:#0b1a29;border-color:#24445d;color:#d8f4ff;box-shadow:none}
+main{height:calc(100dvh - 72px);position:relative}.page{display:none;height:100%;overflow:hidden}.page.active{display:block}.page-inner{height:100%;width:min(1200px,calc(100% - 44px));margin:auto;padding:30px 0;display:flex;flex-direction:column;justify-content:center}.kicker{font-size:10px;letter-spacing:3px;color:var(--cyan);font-weight:850}.homegrid{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center}.hero h1{font-size:clamp(45px,6vw,75px);line-height:.98;letter-spacing:-3px;margin:15px 0 18px}.hero h1 em{font-style:normal;color:transparent;background:linear-gradient(100deg,#fff,#68ddff,#1285d4);background-clip:text}.hero p{color:var(--muted);max-width:490px;font-size:15px}.actions{display:flex;gap:10px;margin-top:25px;flex-wrap:wrap}.stats{display:flex;gap:25px;margin-top:29px;color:#91aabd;font-size:11px}.stats b{display:block;color:#eafaff;font-size:14px}
+.art{height:min(55vh,390px);min-height:260px;border:1px solid #1c4c6b;border-radius:24px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 45%,#105984,#0b2944 45%,#06101c 78%);box-shadow:0 25px 90px #008bd12b,inset 0 0 55px #1bbaff14}.art:before{content:"";position:absolute;inset:-20%;background:repeating-linear-gradient(0deg,transparent 0 28px,#4ccfff12 29px),repeating-linear-gradient(90deg,transparent 0 28px,#4ccfff12 29px);transform:perspective(400px) rotateX(58deg) scale(1.4);top:30%}.orb{position:absolute;left:50%;top:44%;width:145px;height:145px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at 30% 25%,#edffff,#60dfff 10%,#138bd0 37%,#052b49 70%,#020914);box-shadow:0 0 40px #1bbaff,0 0 100px #087dc9aa,inset -16px -20px 25px #020914}.ring{position:absolute;left:50%;top:47%;width:260px;height:260px;border:1px solid #73e8ff99;border-radius:50%;transform:translate(-50%,-50%) rotateX(68deg);box-shadow:0 0 25px #17baff66}.ring.two{width:210px;height:210px;transform:translate(-50%,-50%) rotateX(68deg) rotateZ(35deg);border-color:#19baff}.wave{position:absolute;left:8%;right:8%;top:48%;height:90px;display:flex;align-items:center;justify-content:center;gap:4px}.wave i{width:3px;border-radius:4px;background:linear-gradient(#b4f5ff,#138cda);box-shadow:0 0 9px #19baff}.artcaption{position:absolute;bottom:18px;left:20px;right:20px;display:flex;justify-content:space-between;font-size:9px;letter-spacing:2px;color:#a9dff5}
+.pagehead{display:flex;align-items:end;justify-content:space-between;margin-bottom:20px}.pagehead h1{font-size:34px;letter-spacing:-1px;margin:5px 0}.pagehead p{color:var(--muted);margin:0;font-size:13px}.filters{display:flex;gap:8px;margin-bottom:17px;flex-wrap:wrap}.filter{border:1px solid #1d3d57;background:#091725;color:#9eb8ca;border-radius:30px;padding:7px 13px;font-size:11px}.filter.active{background:#0d3855;color:#e1f8ff;border-color:#168fc9}.products{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.product{border:1px solid #193951;border-radius:15px;overflow:hidden;background:linear-gradient(145deg,#0d2032,#08131f)}.cover{height:clamp(120px,22vh,185px);display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 50%,#0d6595,#0a2944 52%,#06101c)}.cover:before{content:"";position:absolute;width:150px;height:150px;border:1px solid #84eaff99;border-radius:50%;box-shadow:0 0 26px #19baff88,inset 0 0 20px #19baff55}.cover:after{content:"";position:absolute;width:220px;height:65px;border:2px solid #5cddff99;border-radius:50%;transform:rotate(-22deg);box-shadow:0 0 13px #19baff}.cover strong{z-index:1;font-size:23px;letter-spacing:2px;text-shadow:0 0 18px #20baff}.tag{position:absolute;top:11px;left:11px;background:#061a2bdc;border:1px solid #28648a;color:#a8eaff;padding:4px 7px;border-radius:5px;font-size:9px}.details{padding:14px}.details h3{font-size:15px;margin:0 0 4px}.details p{font-size:11px;color:var(--muted);margin:0;min-height:34px}.bottom{display:flex;align-items:center;justify-content:space-between;margin-top:12px}.price{color:#8ae5ff;font-weight:900;font-size:16px}.buy{border:0;border-radius:8px;background:#0b80bd;color:#fff;padding:8px 12px;font-weight:800;font-size:11px}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.tile{border:1px solid #1a3a55;background:linear-gradient(145deg,#0d2032,#08131f);border-radius:15px;padding:22px}.tile .symbol{font-size:23px;color:var(--cyan)}.tile h3{font-size:15px;margin:10px 0 5px}.tile p{font-size:12px;color:var(--muted);margin:0}.cart-count{display:inline-grid;place-items:center;min-width:19px;height:19px;padding:0 5px;margin-left:4px;border-radius:20px;background:#16aeea;color:#03111d;font-size:10px;font-weight:900;box-shadow:0 0 12px #19baff55}.cart-layout{display:grid;grid-template-columns:1.5fr .8fr;gap:16px;min-height:0}.cart-list,.cart-summary{border:1px solid #1a3b55;background:linear-gradient(145deg,#0d1d2d,#08131f);border-radius:15px;padding:16px}.cart-row{display:grid;grid-template-columns:76px 1fr auto;align-items:center;gap:13px;padding:12px 0;border-bottom:1px solid #173149}.cart-row:last-child{border-bottom:0}.cart-thumb{width:76px;height:65px;border-radius:9px;display:grid;place-items:center;background:radial-gradient(circle,#12618d,#081522);border:1px solid #235776;color:#b5efff;font-size:12px;font-weight:900}.cart-info b{display:block;font-size:13px}.cart-info small{color:var(--muted);font-size:11px}.qty{display:flex;align-items:center;gap:8px;margin-top:7px}.qty button{width:24px;height:24px;border-radius:6px;background:#10283d;border:1px solid #28516d;color:#dff8ff}.qty span{font-size:12px}.cart-line-price{font-size:13px;color:#8ae5ff;font-weight:850;white-space:nowrap}.remove{display:block;margin-top:6px;background:none;border:0;color:#819bad;font-size:10px;text-align:right}.summary-line{display:flex;justify-content:space-between;gap:12px;color:#9db5c6;font-size:12px;padding:8px 0}.summary-line.total{border-top:1px solid #24445d;margin-top:8px;padding-top:15px;color:#eafaff;font-size:15px;font-weight:900}.empty-cart{text-align:center;padding:40px 15px;color:var(--muted)}.empty-cart .empty-icon{font-size:38px;color:#4bcfff;margin-bottom:10px}.cart-summary .btn{width:100%;margin-top:12px}
+.contactgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.contactbox{border:1px solid #1b3c57;background:#0b1a29;border-radius:16px;padding:24px}.contactbox h2{margin:5px 0 8px}.contactbox p{color:var(--muted);font-size:13px}.contactlink{display:inline-flex;margin-top:10px}.field{display:block;color:#a9c2d3;font-size:12px;margin:12px 0 5px}.input{width:100%;border:1px solid #294a64;background:#06111d;border-radius:8px;padding:11px;color:white}
+footer{position:absolute;bottom:10px;left:0;right:0;text-align:center;color:#617d92;font-size:10px;pointer-events:none}
+.modal{display:none;position:fixed;inset:0;background:#020711e8;z-index:20;align-items:center;justify-content:center;padding:18px}.modal.show{display:flex}.dialog{width:min(440px,100%);background:#0b1928;border:1px solid #246086;border-radius:17px;padding:22px}.dialogtop{display:flex;justify-content:space-between;align-items:center}.dialog h2{margin:0}.close{background:#102337;border:1px solid #294860;color:#dff7ff;border-radius:8px;padding:7px 10px}.qr{width:170px;height:170px;background:white;color:#182b3b;border-radius:9px;margin:17px auto;display:grid;place-items:center;text-align:center;font-weight:900;padding:12px}.dialog p{font-size:12px;color:var(--muted)}
+@media(max-width:760px){.cart-layout{grid-template-columns:1fr;gap:9px}.cart-list,.cart-summary{padding:11px}.cart-summary h2{font-size:17px}.cart-row{grid-template-columns:58px 1fr auto;gap:9px}.cart-thumb{width:58px;height:54px;font-size:9px}header{height:auto;min-height:68px}.top{min-height:68px;display:flex;flex-wrap:wrap;padding:9px 0;gap:9px}.logo{font-size:18px}.logo-mark{width:30px;height:30px}.nav{order:3;width:100%;justify-content:space-between;gap:2px;padding:4px;border-radius:12px}.nav button{padding:8px 7px;font-size:10px}.nav button:before{display:none}.right{margin-left:auto}.right .ghost{display:none}main{height:calc(100dvh - 116px)}.page-inner{padding:18px 0}.homegrid{grid-template-columns:1fr;gap:15px}.hero h1{font-size:48px}.hero p{font-size:13px}.art{height:220px;min-height:220px}.stats{margin-top:15px}.products{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.cover{height:110px}.cover strong{font-size:14px}.cover:before{width:90px;height:90px}.cover:after{width:130px;height:40px}.details{padding:9px}.details h3{font-size:12px}.details p{font-size:10px;min-height:45px}.price{font-size:12px}.buy{padding:7px 8px;font-size:10px}.pagehead h1{font-size:27px}.tiles{gap:8px}.tile{padding:13px}.tile h3{font-size:12px}.tile p{font-size:10px}.contactgrid{gap:10px}.contactbox{padding:15px}}
+@media(max-width:430px){.cart-layout{display:block;overflow:auto;max-height:75vh}.cart-summary{margin-top:9px}.cart-row{grid-template-columns:48px 1fr auto}.cart-thumb{width:48px;height:48px;font-size:8px}.shell,.page-inner{width:calc(100% - 24px)}.products{grid-template-columns:1fr 1fr}.cover{height:120px}.details p{min-height:32px}.tiles{grid-template-columns:1fr}.tile{padding:12px}.tile .symbol{display:none}.contactgrid{grid-template-columns:1fr}.contactbox{padding:12px}.pagehead{margin-bottom:12px}.page-inner{justify-content:flex-start;padding-top:16px}.homegrid{justify-content:center}.hero h1{font-size:41px}.art{height:185px;min-height:185px}.stats{gap:12px}.stats b{font-size:12px}}
+@media(max-height:650px) and (min-width:761px){.page-inner{padding:15px 0}.hero h1{font-size:54px}.art{height:300px}.cover{height:125px}.pagehead{margin-bottom:12px}}
+
+/* Cart interaction polish */
+.cart-count{transition:transform .22s ease,box-shadow .22s ease}
+.cart-count.bump{transform:scale(1.45);box-shadow:0 0 22px #36d5ff}
+.cart-row{animation:cartRowIn .38s cubic-bezier(.2,.8,.2,1) both}
+@keyframes cartRowIn{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.cart-toast{position:fixed;right:22px;top:94px;z-index:80;width:min(340px,calc(100vw - 28px));padding:13px 15px;border:1px solid #2b759c;border-radius:13px;background:linear-gradient(145deg,#102b42,#071725);box-shadow:0 18px 50px #0009,0 0 25px #19baff22;color:#e9faff;display:flex;gap:11px;align-items:center;opacity:0;transform:translateY(-12px) scale(.96);pointer-events:none;transition:opacity .25s,transform .25s}
+.cart-toast.show{opacity:1;transform:translateY(0) scale(1)}
+.cart-toast-icon{width:36px;height:36px;flex:0 0 36px;border-radius:10px;display:grid;place-items:center;background:#0d3b58;color:#7ce6ff;font-size:19px}
+.cart-toast small{display:block;color:#9bb9cb;font-size:11px;margin-top:2px}
+.fly-product{position:fixed;z-index:90;width:64px;height:52px;border:1px solid #66ddff;border-radius:11px;background:radial-gradient(circle,#12618d,#081522);box-shadow:0 0 25px #19baff88;display:grid;place-items:center;color:#d8f8ff;font-size:10px;font-weight:900;pointer-events:none;transition:transform .62s cubic-bezier(.2,.8,.2,1),opacity .62s ease}
+.cart-list{min-height:220px;max-height:52vh;overflow:auto}
+.cart-summary{align-self:start}
+#checkoutCartBtn:disabled{cursor:not-allowed}
+@media(max-width:760px){.cart-list{max-height:35vh}.cart-toast{top:128px;right:12px}}
+.payment-content{display:grid;grid-template-columns:220px 1fr;gap:18px;align-items:center}.payment-qr{width:100%;background:#fff;border-radius:12px;padding:8px}.payment-qr img{display:block;width:100%;height:auto}.payment-meta{min-width:0}.payment-meta .input{margin-bottom:9px}.payment-state{padding:10px;border:1px solid #245d7c;background:#0b263b;border-radius:9px;color:#aeeaff;font-size:12px;margin-top:10px}.payment-state.paid{border-color:#1b8064;color:#8bf0c8;background:#09291f}.download-list a{display:block;color:#8be7ff;text-decoration:underline;margin-top:7px;font-weight:800}.copyline{display:flex;gap:6px}.copyline .input{flex:1;min-width:0}.copyline button{border:1px solid #28648a;background:#0c2a40;color:#b8edff;border-radius:8px;padding:0 10px}.admin-link{position:fixed;bottom:8px;right:12px;z-index:4;font-size:10px;color:#52758c;opacity:.6}.admin-link:hover{opacity:1}@media(max-width:600px){.payment-content{grid-template-columns:1fr}.payment-qr{max-width:230px;margin:auto}}
+</style></head>
+<body>
+<div class="cart-toast" id="cartToast"><div class="cart-toast-icon">✓</div><div><b id="cartToastTitle">Đã thêm vào giỏ hàng</b><small id="cartToastText">Sản phẩm đã được thêm thành công.</small></div></div>
+<div id="siteLoader"><div class="loader-content"><div class="loader-logo"><span>H</span>NGUYEN</div><div class="loader-orbit"></div><div class="loader-text">PREPARING YOUR CREATIVE SPACE</div><div class="loader-track"><i></i></div></div></div>
+<header><div class="shell top">
+<a class="logo" href="#" onclick="showPage('home');return false"><span class="logo-mark">H</span>NGUYEN</a>
+<nav class="nav" aria-label="Điều hướng">
+<button class="active" data-page="home" onclick="showPage('home')">Trang chủ</button>
+<button data-page="store" onclick="showPage('store')">Cửa hàng</button>
+<button data-page="about" onclick="showPage('about')">Giới thiệu</button>
+<button data-page="contact" onclick="showPage('contact')">Liên hệ Admin</button>
+<button data-page="cart" onclick="showPage('cart')">Giỏ hàng <span id="cartCount" class="cart-count">0</span></button>
+</nav><div class="right"><button class="btn ghost" onclick="showPage('contact')">Hỗ trợ</button><button class="btn" onclick="showPage('store')">Mua project ↗</button></div>
+</div></header>
+<main>
+<section class="page active" id="page-home"><div class="page-inner"><div class="homegrid">
+<div class="hero"><div class="kicker">HNGUYEN DIGITAL CREATIVE STORE</div><h1>TURN SOUND<br>INTO <em>VISUAL.</em></h1><p>Project sóng nhạc, visualizer 3D và template Adobe After Effects dành cho creator. Tùy chỉnh nhanh, tạo chất riêng cho từng video.</p><div class="actions"><button class="btn" onclick="showPage('store')">Khám phá cửa hàng ↗</button><button class="btn ghost" onclick="showPage('about')">Tìm hiểu HNGUYEN</button></div><div class="stats"><div><b>AE PROJECTS</b>File dễ tùy chỉnh</div><div><b>3D MOTION</b>Visual hiện đại</div><div><b>DIGITAL</b>Tải file tiện lợi</div></div></div>
+<div class="art"><div class="ring"></div><div class="ring two"></div><div class="orb"></div><div class="wave" id="wave"></div><div class="artcaption"><span>WAVEFORM ENGINE / 001</span><span>BLUE · BLACK · 3D</span></div></div>
+</div></div><footer>© 2026 HNGUYEN · BLUE / BLACK / 3D MOTION</footer></section>
+<section class="page" id="page-store"><div class="page-inner"><div class="pagehead"><div><div class="kicker">THE COLLECTION</div><h1>Cửa hàng project</h1><p>Chọn project phù hợp với phong cách sáng tạo của bạn.</p></div><span class="kicker" id="catalogCount">03 DIGITAL ITEMS</span></div><div class="filters"><button class="filter active" onclick="filterProducts('all',this)">Tất cả</button><button class="filter" onclick="filterProducts('wave',this)">Sóng nhạc</button><button class="filter" onclick="filterProducts('3d',this)">Visualizer 3D</button><button class="filter" onclick="filterProducts('template',this)">Template AE</button></div><div class="products">
+<article class="product" data-category="wave"><div class="cover"><span class="tag">BEST SELLER</span><strong>WAVE / 01</strong></div><div class="details"><h3>Neon Audio Spectrum</h3><p>Project sóng nhạc neon xanh biển, thay audio và nội dung dễ dàng.</p><div class="bottom"><span class="price">79.000đ</span><button class="buy" onclick="addToCart('wave01','Neon Audio Spectrum',79000,'WAVE / 01',this)">Mua ngay</button></div><button class="demo-btn" onclick="openDemo(\'Neon Audio Spectrum\',\'\')">▶ Xem demo video</button></div></article>
+<article class="product" data-category="3d"><div class="cover"><span class="tag">3D VISUALIZER</span><strong>DEEP / 3D</strong></div><div class="details"><h3>Deep Ocean Visualizer</h3><p>Không gian 3D xanh biển, ánh sáng và chuyển động mượt.</p><div class="bottom"><span class="price">99.000đ</span><button class="buy" onclick="addToCart('deep3d','Deep Ocean Visualizer',99000,'DEEP / 3D',this)">Mua ngay</button></div><button class="demo-btn" onclick="openDemo(\'Deep Ocean Visualizer\',\'\')">▶ Xem demo video</button></div></article>
+<article class="product" data-category="template"><div class="cover"><span class="tag">CREATOR PACK</span><strong>AE / PACK</strong></div><div class="details"><h3>Music Promo Bundle</h3><p>Bộ intro, outro và visual quảng bá âm nhạc cho video.</p><div class="bottom"><span class="price">149.000đ</span><button class="buy" onclick="addToCart('aepack','Music Promo Bundle',149000,'AE / PACK',this)">Mua ngay</button></div><button class="demo-btn" onclick="openDemo(\'Music Promo Bundle\',\'\')">▶ Xem demo video</button></div></article>
+</div></div><footer>Chọn sản phẩm để xem thông tin thanh toán · HNGUYEN</footer></section>
+<section class="page" id="page-about"><div class="page-inner"><div class="pagehead"><div><div class="kicker">ABOUT THE STORE</div><h1>Không gian sáng tạo số.</h1><p>HNGUYEN tập trung vào project âm thanh, motion graphics và visualizer cho After Effects.</p></div></div><div class="tiles"><div class="tile"><div class="symbol">◈</div><h3>Project có tổ chức</h3><p>Đóng gói project, footage và hướng dẫn sử dụng rõ ràng theo từng sản phẩm.</p></div><div class="tile"><div class="symbol">ϟ</div><h3>Thanh toán tiện lợi</h3><p>Định hướng tích hợp SePay để đối soát giao dịch và cấp file tự động.</p></div><div class="tile"><div class="symbol">✧</div><h3>Hỗ trợ người mua</h3><p>Liên hệ Admin khi cần hỗ trợ đơn hàng, file tải hoặc hướng dẫn chỉnh sửa.</p></div></div><div style="margin-top:20px;border:1px solid #1b3b55;background:#0b1a29;border-radius:14px;padding:18px"><div class="kicker">OUR STYLE</div><h2 style="margin:5px 0">BLUE / BLACK / 3D MOTION</h2><p style="color:var(--muted);font-size:13px;margin:0">Thiết kế tập trung vào màu xanh biển phát sáng, nền đen sâu, chiều sâu 3D và trải nghiệm điều hướng gọn gàng.</p></div></div><footer>HNGUYEN · Digital motion assets for creators</footer></section>
+<section class="page" id="page-contact"><div class="page-inner"><div class="pagehead"><div><div class="kicker">SUPPORT CENTER</div><h1>Liên hệ Admin</h1><p>Chúng tôi hỗ trợ các vấn đề liên quan đến đơn hàng và project.</p></div></div><div class="contactgrid"><div class="contactbox"><div class="kicker">CUSTOMER SUPPORT</div><h2>Cần hỗ trợ?</h2><p>Nhắn tin Admin nếu bạn cần hỏi về thanh toán, trạng thái đơn hàng, link tải hoặc cách sử dụng project After Effects.</p><a class="btn contactlink" href="https://www.facebook.com/" target="_blank" rel="noopener">Nhắn tin Facebook ↗</a><p style="font-size:10px">Đây là liên kết mẫu. Hãy thay bằng Facebook/Zalo/Telegram chính thức.</p></div><div class="contactbox"><div class="kicker">ORDER ASSISTANCE</div><h2>Hỗ trợ đơn hàng</h2><label class="field">Mã đơn hàng (nếu có)</label><input class="input" id="supportOrderCode" placeholder="Ví dụ: HNG1234567890"><label class="field">Nội dung cần hỗ trợ</label><input class="input" id="supportMessage" placeholder="Mô tả vấn đề của bạn"><button class="btn" style="margin-top:14px" onclick="submitSupport()">Gửi yêu cầu</button><p id="supportResult" style="font-size:11px;color:#8ae5ff"></p></div></div></div><footer>HNGUYEN · Support center</footer></section>
+<section class="page" id="page-cart"><div class="page-inner"><div class="pagehead"><div><div class="kicker">YOUR SELECTION</div><h1>Giỏ hàng</h1><p>Kiểm tra project đã chọn trước khi thanh toán.</p></div><button class="btn ghost" onclick="showPage('store')">← Tiếp tục mua sắm</button></div><div class="cart-layout"><div class="cart-list" id="cartList"><div class="empty-cart"><div class="empty-icon">◇</div><b>Giỏ hàng đang trống</b><p>Hãy chọn project bạn yêu thích trong cửa hàng.</p><button class="btn" onclick="showPage('store')">Khám phá project</button></div></div><aside class="cart-summary"><div class="kicker">ORDER SUMMARY</div><h2 style="margin:5px 0 12px">Tóm tắt đơn hàng</h2><div class="summary-line"><span>Số lượng sản phẩm</span><b id="cartItems">0</b></div><div class="summary-line"><span>Tạm tính</span><b id="cartSubtotal">0đ</b></div><div class="summary-line"><span>Phí giao file số</span><b style="color:#65e7ba">Miễn phí</b></div><div class="summary-line total"><span>Tổng cộng</span><b id="cartTotal">0đ</b></div><button class="btn" id="checkoutCartBtn" onclick="checkoutCart()">Tiến hành thanh toán ↗</button><p style="font-size:10px;color:#829bad">Thanh toán SePay tự động sẽ được kích hoạt khi backend được kết nối.</p></aside></div></div><footer>Giỏ hàng HNGUYEN · Digital products</footer></section>
+</main>
+<div class="modal" id="demoModal"><div class="dialog"><div class="dialogtop"><h2 id="demoTitle">Video demo</h2><button class="close" onclick="closeDemo()">Đóng ✕</button></div><div class="video-frame" id="demoFrame"><div class="video-empty"><div style="font-size:35px;color:#53d9ff">▷</div><b>Video demo chưa được cài đặt</b>Admin có thể thêm link video YouTube hoặc MP4 cho sản phẩm này.</div></div><p id="demoCaption">Xem trước hiệu ứng và cách project hoạt động.</p></div></div>
+<div class="modal" id="checkoutModal"><div class="dialog"><div class="dialogtop"><h2>Thông tin đơn hàng</h2><button class="close" onclick="closeCheckout()">Đóng ✕</button></div><p id="selectedProduct"></p><div id="paymentContent" class="payment-content"><div class="qr">SEPAY QR<br><small style="font-weight:400">Đang tạo đơn hàng…</small></div></div></div></div>
+<a class="admin-link" href="/admin.html">Quản trị</a>
+<script>
+let cart=[];
+let cartToastTimer=null;
+function showPage(name){
+  const target=document.getElementById('page-'+name);
+  if(!target)return;
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  target.classList.add('active');
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===name));
+  if(name==='cart')renderCart();
+}
+function filterProducts(cat,el){document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));el.classList.add('active');document.querySelectorAll('.product').forEach(p=>p.style.display=cat==='all'||p.dataset.category===cat?'':'none')}
+function money(n){return Number(n||0).toLocaleString('vi-VN')+'đ'}
+function animateIntoCart(source,label){
+  const target=document.getElementById('cartCount');
+  if(!target)return;
+  const from=source?.getBoundingClientRect?.();
+  const to=target.getBoundingClientRect();
+  const fly=document.createElement('div');
+  fly.className='fly-product';
+  fly.textContent=label||'PROJECT';
+  fly.style.left=(from?from.left+from.width/2-32:window.innerWidth/2-32)+'px';
+  fly.style.top=(from?from.top+from.height/2-26:window.innerHeight/2-26)+'px';
+  document.body.appendChild(fly);
+  const dx=(to.left+to.width/2)-(from?from.left+from.width/2:window.innerWidth/2);
+  const dy=(to.top+to.height/2)-(from?from.top+from.height/2:window.innerHeight/2);
+  requestAnimationFrame(()=>{fly.style.transform=`translate(${dx}px,${dy}px) scale(.18) rotate(18deg)`;fly.style.opacity='.15'});
+  setTimeout(()=>fly.remove(),700);
+  target.classList.remove('bump');void target.offsetWidth;target.classList.add('bump');
+}
+function showCartToast(name,count){
+  const toast=document.getElementById('cartToast');
+  document.getElementById('cartToastTitle').textContent='Đã thêm vào giỏ hàng';
+  document.getElementById('cartToastText').textContent=name+' · Giỏ hàng có '+count+' sản phẩm';
+  toast.classList.add('show');
+  clearTimeout(cartToastTimer);
+  cartToastTimer=setTimeout(()=>toast.classList.remove('show'),2600);
+}
+function addToCart(id,name,price,label,button){
+  const item=cart.find(x=>x.id===id);
+  if(item)item.qty++;else cart.push({id,name,price:Number(price),label,qty:1});
+  renderCart();
+  animateIntoCart(button||document.activeElement,label);
+  showCartToast(name,cart.reduce((sum,x)=>sum+x.qty,0));
+}
+function changeQty(id,delta){const item=cart.find(x=>x.id===id);if(!item)return;item.qty+=delta;if(item.qty<=0)cart=cart.filter(x=>x.id!==id);renderCart()}
+function removeItem(id){cart=cart.filter(x=>x.id!==id);renderCart()}
+function renderCart(){
+  const list=document.getElementById('cartList');
+  if(!list)return;
+  const count=cart.reduce((s,x)=>s+x.qty,0);
+  const sum=cart.reduce((s,x)=>s+x.qty*x.price,0);
+  const countEl=document.getElementById('cartCount');
+  if(countEl)countEl.textContent=count;
+  const itemsEl=document.getElementById('cartItems');if(itemsEl)itemsEl.textContent=count;
+  const subtotalEl=document.getElementById('cartSubtotal');if(subtotalEl)subtotalEl.textContent=money(sum);
+  const totalEl=document.getElementById('cartTotal');if(totalEl)totalEl.textContent=money(sum);
+  const checkoutBtn=document.getElementById('checkoutCartBtn');
+  if(checkoutBtn){checkoutBtn.disabled=!count;checkoutBtn.style.opacity=count?1:.45}
+  if(!cart.length){
+    list.innerHTML='<div class="empty-cart"><div class="empty-icon">◇</div><b>Giỏ hàng đang trống</b><p>Hãy chọn project bạn yêu thích trong cửa hàng.</p><button class="btn" onclick="showPage(&quot;store&quot;)">Khám phá project</button></div>';
+    return;
+  }
+  list.innerHTML=cart.map(x=>`<div class="cart-row"><div class="cart-thumb">${x.label}</div><div class="cart-info"><b>${x.name}</b><small>${money(x.price)} / sản phẩm</small><div class="qty"><button aria-label="Giảm số lượng" onclick="changeQty('${x.id}',-1)">−</button><span>${x.qty}</span><button aria-label="Tăng số lượng" onclick="changeQty('${x.id}',1)">+</button></div></div><div><div class="cart-line-price">${money(x.price*x.qty)}</div><button class="remove" onclick="removeItem('${x.id}')">Xóa</button></div></div>`).join('');
+}
+function checkoutCart(){if(!cart.length)return;let total=cart.reduce((s,x)=>s+x.qty*x.price,0);let names=cart.map(x=>x.name+' × '+x.qty).join(', ');document.getElementById('selectedProduct').textContent='Sản phẩm: '+names;document.getElementById('orderCode').value='HNG'+Date.now().toString().slice(-8);document.getElementById('orderPrice').value=money(total);document.getElementById('checkoutModal').classList.add('show')}
+function closeCheckout(){document.getElementById('checkoutModal').classList.remove('show')}
+renderCart();
+const wave=document.getElementById('wave');for(let i=0;i<43;i++){let b=document.createElement('i');b.style.height=(15+Math.abs(Math.sin(i*.5)*63)+Math.random()*15)+'px';wave.appendChild(b)}
+// Always release the intro screen: never let the site remain stuck on loading.
+function hideSiteLoader(){
+  const loader=document.getElementById('siteLoader');
+  if(!loader || loader.classList.contains('hide'))return;
+  loader.classList.add('hide');
+  setTimeout(()=>{if(loader.isConnected)loader.remove()},700);
+}
+// The script is at the end of the document, so the page structure is ready now.
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',hideSiteLoader,{once:true});
+}else{
+  requestAnimationFrame(hideSiteLoader);
+}
+// Fallback for slow assets, blocked resources, or browser load events that never finish.
+window.addEventListener('load',hideSiteLoader,{once:true});
+setTimeout(hideSiteLoader,2500);
+</script>
+<script>
+let activeOrderCode = null;
+let paymentPoller = null;
+function apiMoney(n){return Number(n||0).toLocaleString('vi-VN')+'đ'}
+async function checkoutCart(){
+ if(!cart.length)return;
+ const btn=document.getElementById('checkoutCartBtn'); if(btn){btn.disabled=true;btn.textContent='Đang tạo mã QR…'}
+ try{
+  const r=await fetch('/api/orders',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items:cart.map(x=>({id:x.id,qty:x.qty}))})});
+  const data=await r.json(); if(!r.ok)throw new Error(data.error||'Không thể tạo đơn hàng.');
+  activeOrderCode=data.code;
+  document.getElementById('selectedProduct').textContent='Đơn hàng '+data.code+' · '+cart.map(x=>x.name+' × '+x.qty).join(', ');
+  const holder=document.getElementById('paymentContent');
+  holder.innerHTML=`<div><img class="payment-qr" src="${data.qrUrl}" alt="QR thanh toán SePay"><p style="font-size:10px;color:#8faabd;text-align:center">Mở app ngân hàng và quét mã QR</p></div><div class="payment-meta"><div class="kicker">SEPAY BANK TRANSFER</div><h2 style="color:#8ae5ff;margin:4px 0 12px">${apiMoney(data.total)}</h2><label class="field">Ngân hàng</label><input class="input" readonly value="${data.bankId}"><label class="field">Số tài khoản</label><input class="input" readonly value="${data.bankAccount}"><label class="field">Chủ tài khoản</label><input class="input" readonly value="${data.bankOwner||'Theo thông tin ngân hàng'}"><label class="field">Nội dung chuyển khoản (bắt buộc)</label><div class="copyline"><input class="input" id="paymentCodeField" readonly value="${data.transferContent}"><button onclick="copyPaymentCode()">Sao chép</button></div><div id="paymentStatus" class="payment-state">Đang chờ thanh toán… Trang sẽ tự kiểm tra trạng thái.</div><div id="downloadList" class="download-list"></div></div>`;
+  document.getElementById('checkoutModal').classList.add('show');
+  if(paymentPoller)clearInterval(paymentPoller); let attempts=0;
+  paymentPoller=setInterval(async()=>{attempts++;try{const q=await fetch('/api/orders/'+encodeURIComponent(activeOrderCode));const st=await q.json();if(st.status==='paid'){clearInterval(paymentPoller);paymentPoller=null;const status=document.getElementById('paymentStatus');if(status){status.className='payment-state paid';status.textContent='✓ Đã nhận thanh toán thành công!';}const links=document.getElementById('downloadList');if(links){links.innerHTML=st.downloads.map(x=>x.url?`<a href="${x.url}">Tải ${x.name} ↓</a>`:`<span style="display:block;color:#ffcc88;font-size:11px;margin-top:7px">${x.name}: Admin chưa tải file lên, vui lòng liên hệ hỗ trợ.</span>`).join('');}cart=[];renderCart();}else if(attempts>300){clearInterval(paymentPoller);paymentPoller=null;const status=document.getElementById('paymentStatus');if(status)status.textContent='Đã dừng tự kiểm tra. Bạn có thể đóng cửa sổ và tra cứu mã đơn với Admin.';}}catch(e){}},3000);
+ }catch(e){alert(e.message)}finally{if(btn){btn.disabled=!cart.length;btn.textContent='Tiến hành thanh toán ↗'}}
+}
+function copyPaymentCode(){const el=document.getElementById('paymentCodeField');if(el){el.select();navigator.clipboard?.writeText(el.value).then(()=>alert('Đã sao chép nội dung chuyển khoản.')).catch(()=>document.execCommand('copy'));}}
+function closeCheckout(){document.getElementById('checkoutModal').classList.remove('show');if(paymentPoller){clearInterval(paymentPoller);paymentPoller=null;}}
+async function submitSupport(){const code=document.getElementById('supportOrderCode').value;const message=document.getElementById('supportMessage').value;const out=document.getElementById('supportResult');try{const r=await fetch('/api/support',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({orderCode:code,message})});const d=await r.json();if(!r.ok)throw new Error(d.error);out.textContent='Đã gửi yêu cầu hỗ trợ. Mã yêu cầu #'+d.id+'.';document.getElementById('supportMessage').value='';}catch(e){out.textContent=e.message||'Không gửi được yêu cầu.';}}
+// Catalog is driven by Supabase so Admin-added products appear without editing HTML.
+function safeText(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+async function loadCatalog(){try{const r=await fetch('/api/products');const products=await r.json();if(!r.ok||!Array.isArray(products))throw Error('catalog');const host=document.querySelector('#page-store .products');if(!host)return;host.innerHTML='';products.forEach(p=>{const card=document.createElement('article');card.className='product';card.dataset.category=p.category||'template';card.innerHTML=`<div class="cover"><span class="tag">${safeText(p.category==='3d'?'3D VISUALIZER':p.category==='wave'?'DIGITAL PROJECT':'CREATOR PACK')}</span><strong>${safeText(p.label||'PROJECT')}</strong></div><div class="details"><h3>${safeText(p.name)}</h3><p>${safeText(p.description)}</p><div class="bottom"><span class="price">${apiMoney(p.price)}</span><button class="buy" type="button">Mua ngay</button></div><button class="demo-btn" type="button">▶ Xem demo video</button></div>`;card.querySelector('.buy').addEventListener('click',e=>addToCart(p.id,p.name,p.price,p.label||'PROJECT',e.currentTarget));card.querySelector('.demo-btn').addEventListener('click',()=>openDemo(p.name,p.demo_url||''));host.appendChild(card);});const count=document.getElementById('catalogCount');if(count)count.textContent=String(products.length).padStart(2,'0')+' DIGITAL ITEMS';const active=document.querySelector('.filter.active');if(active)filterProducts(active.textContent.includes('Tất cả')?'all':active.textContent.includes('Sóng')?'wave':active.textContent.includes('3D')?'3d':'template',active);}catch(e){console.warn('Không tải được danh mục sản phẩm',e)}}
+loadCatalog();
+</script>
+</body></html>

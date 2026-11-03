@@ -1,0 +1,10 @@
+{
+  "name": "hnguyen-digital-store-netlify",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {"dev":"netlify dev","build":"node -e \"console.log('HNGUYEN Netlify Functions ready')\""},
+  "engines": {"node": ">=20"},
+  "dependencies": {"@supabase/supabase-js":"^2.57.0"},
+  "devDependencies": {"netlify-cli":"^23.5.0"}
+}
